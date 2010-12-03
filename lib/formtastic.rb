@@ -1799,7 +1799,7 @@ module Formtastic #:nodoc:
               # options[:scope] = [:helpers, type]
               # options[:default] = defaults
               # i18n_value = ::I18n.t(default_key, options)
-              i18n_value = ::I18n.translate!(key, :scope => ['activerecord.attributes', model_name]) rescue model_name.camelize.constantize.human_attribute_name(key)
+              i18n_value = ::I18n.translate!(key, :scope => ['activerecord.attributes', model_name]) rescue '' #model_name.camelize.constantize.human_attribute_name(key)
             end
             i18n_value = escape_html_entities(i18n_value) if i18n_value.is_a?(::String)
             i18n_value.blank? ? nil : i18n_value
