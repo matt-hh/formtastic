@@ -1742,6 +1742,9 @@ module Formtastic #:nodoc:
 
             i18n_value = ::Formtastic::I18n.t(defaults.shift,
               options.merge(:default => defaults, :scope => type.to_s.pluralize.to_sym))
+            if i18n_value.blank?
+              i18n_value = ::I18n.translate!(key, :scope => ['activerecord.attributes', model_name]) rescue '' #model_name.camelize.constantize.human_attribute_name(key) 
+            end
             i18n_value = escape_html_entities(i18n_value) if i18n_value.is_a?(::String)
             i18n_value.blank? ? nil : i18n_value
           end
